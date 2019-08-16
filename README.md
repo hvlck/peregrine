@@ -1,0 +1,2 @@
+# peregrine
+ Minimalist text editor
