@@ -56,7 +56,7 @@ themeBtn.onclick = function changeTheme() {
 // Automatic Theme Changer
 
 let hr = new Date();
-if (hr.getHours() >= 16 || hr.getHours() <= 7) {
+if (hr.getHours() >= 18 || hr.getHours() <= 7) {
     styleSheet.setAttribute('href', 'themes/dark.css')
     themeBtn.innerHTML = 'Dark';
 }
