@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Peregrine | Home</title>
+    <link id="theme" href="workspace/themes/light.css" rel="stylesheet" type="text/css" >
+    <link href="style.css" rel="stylesheet" type="text/css">
+  </head>
+<body>
+
+    <div class="nav">
+        <nav>
+            <a href="/">Home</a>
+            <a href="workspace/index.html">Workspace</a>
+            <a id="theme-btn">Light</a>
+            <a href="https://github.com/EthanJustice/peregrine">GitHub</a>
+        </nav>
+    </div>
+
+    <h2>About</h2>
+    <p>Peregrine is a minimal, simple, and easy-to-use text editor.  Instead of having a complicated user interface with hundreds of buttons (of which many are never used), Peregrine provides a distraction-free environment in order to help you get the most out of your writing sessions.  <a href="/workspace/">Get Started Already!</a></p>
+
+    <h2>Features</h2>
+    <ul style="margin: auto 0 auto -2%">
+        <li>Four Themes</li>
+        <li>Charcter and Word Count</li>
+        <li>Minimal Settings and Customization</li>
+        <li>Text is Downloadable</li>
+        <li>Clean, sleek interface</li>
+        <li>Auto-saving (every 20 seconds) and manual saving capabilities</li>
+        <li>Saves workspace in the browser to recover work in case of loss</li>
+        <li>Over 20 Fonts and Sizes to Choose From</li>
+    </ul>
+
+    <p style="position: fixed; bottom: 0%; left: 2%;">Made by <a href="https://ethanjustice.github.io/">Ethan Justice</a></p>
+
+    <script>
+        const styleSheet = document.getElementById('theme');
+        document.getElementById('theme-btn').onclick = function changeTheme() {
+            let currentStyle = styleSheet.getAttribute('href');
+            if (currentStyle == 'workspace/themes/light.css') {
+                styleSheet.setAttribute('href', 'workspace/themes/dark.css');
+                document.getElementById('theme-btn').innerHTML = 'Dark';
+            } else {
+                styleSheet.setAttribute('href', 'workspace/themes/light.css');
+                document.getElementById('theme-btn').innerHTML = 'Light';
+            }
+        }
+    </script>
+
+</body>
+</html>

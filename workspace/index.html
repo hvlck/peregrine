@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Peregrine</title>
+    <link id="theme" href="themes/dark.css" rel="stylesheet" type="text/css" >
+    <link href="core.css" rel="stylesheet" type="text/css">
+  </head>
+<body>
+
+    <div class="nav">
+        <nav>
+            <a href="../">Home</a>
+            <a id="settings-btn">Settings</a>
+            <a id="save-btn">Save</a>
+            <a id="theme-btn"></a>
+            <a id="download-btn">Download</a>
+            <a id="char-count"></a>
+            <a id="word-count"></a>
+            <a id="saved-popup">Saved!</a>
+        </nav>
+    </div>
+
+    <div class="settings-menu" id="settings-menu">
+        <select id="font">
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Times">Times</option>
+            <option value="Serif">Serif</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Palatino Linotype">Palatino Linotype</option>
+            <option value="Palatino">Palatino</option>
+            <option value="Book Antiqua">Book Antiqua</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Courier">Courier</option>
+            <option value="Monaco">Monaco</option>
+            <option value="Lucida Console">Lucida Console</option>
+            <option value="monospace" selected >Monospace</option>
+            <option value="Arial">Arial</option>
+            <option value="Arial Black">Arial Black</option>
+            <option value="Helvetica">Helvetica</option>
+            <option value="Trebuchet MS">Trebuchet MS</option>
+            <option value="Gadget">Gadget</option>
+            <option value="cursive">Cursive</option>
+            <option value="Impact">Impact</option>
+            <option value="Charcoal">Charcoal</option>
+            <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+            <option value="Lucida Grande">Lucida Grande</option>
+            <option value="Tahoma">Tahoma</option>
+            <option value="Geneva">Geneva</option>
+            <option value="Verdana">Verdana</option>
+            <option value="Comic Sans MS">Comic Sans MS</option>
+            <option value="sans-serif">Sans-Serif</option>
+        </select>
+        <select id="font-size">
+            <option value="1pt">1pt</option>
+            <option value="3pt">3pt</option>
+            <option value="5pt">5pt</option>
+            <option value="7pt">7pt</option>
+            <option value="8pt">8pt</option>
+            <option value="10pt">10pt</option>
+            <option value="11pt">11pt</option>
+            <option value="11.5pt">11.5pt</option>
+            <option value="12pt" selected>12pt</option>
+            <option value="14pt">14pt</option>
+            <option value="16pt">16pt</option>
+            <option value="20pt">20pt</option>
+            <option value="26pt">26pt</option>
+            <option value="32pt">32pt</option>
+            <option value="40pt">40pt</option>
+            <option value="48pt">48pt</option>
+            <option value="52pt">42pt</option>
+            <option value="60pt">60pt</option>
+            <option value="68pt">68pt</option>
+            <option value="72pt">72pt</option>
+            <option value="80pt">80pt</option>
+        </select>
+
+        <span id="reset">Reset</span>
+    </div>
+
+    <div class="workspace">
+        <textarea placeholder="Write Here..."></textarea>
+    </div>
+
+<script src="script.js"></script>
+</body>
+</html>
