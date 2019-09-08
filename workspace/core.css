@@ -1,12 +1,23 @@
-HTML { scroll-behavior: smooth }
+HTML {
+    scroll-behavior: smooth;
+}
+
+.border {
+    animation: 1s fillBorder linear forwards;
+    position: absolute;
+    top: 0;
+    left: 50%;
+}
 
 Body {
-    padding: 10px;
+    padding: 0px 10px 10px 10px;
     background-color: var(--primary);
     color: var(--tertiary);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     animation: 1s fadeIn linear;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+
+nav { margin: 0 -0.5% }
 
 nav a, nav a:visited {
     color: var(--tertiary);
@@ -17,10 +28,10 @@ nav a, nav a:visited {
 
 nav a:hover {
     opacity: 1;
-    transition: 0.5s linear;
+    transition: 0.1s linear;
 }
 
-nav a:not(:hover) { transition: 0.5s linear }
+nav a:not(:hover) { transition: 0.1s linear }
 
 #settings-btn:hover, #save-btn:hover, #theme-btn:hover, #download-btn:hover, #reset:hover, #reset-default:hover, #reset-all:hover { cursor: pointer }
 
@@ -42,20 +53,12 @@ textarea {
     min-height: 81vh;
 }
 
-::-webkit-scrollbar {
-    height: 10px;
-    width: 10px;
-}
-::-webkit-scrollbar-track { background: var(--primary) }
-::-webkit-scrollbar-thumb { background: var(--secondary) }
-::-webkit-scrollbar-thumb:hover { background: var(--secondary) }
-
 .settings-menu {
     color: var(--tertiary);
     background-color: var(--primary);
 
     display: none;
-    margin: 0.25% 0.4%;
+    margin: 0.25% -0.1%;
 
     width: 99%;
     height: 5vh;
@@ -68,16 +71,31 @@ textarea {
     100% { opacity: 1 }
 }
 
+@keyframes fillBorder {
+    0% {
+        border-top: 5px solid transparent;
+        transform: scaleX(0);
+        transform-origin: 50% 50%;
+        width: 0%;
+    }
+    100% {
+        border-top: 5px solid var(--highlight);
+        transform: scaleX(1);
+        width: 100%;
+        left: 0%;
+    }
+}
+
 #reset {
     opacity: 0.7;
 }
 
 #reset:hover {
     opacity: 1;
-    transition: 0.5s linear;
+    transition: 0.1s linear;
 }
 
-#reset:not(:hover) { transition: 0.5s linear }
+#reset:not(:hover) { transition: 0.1s linear }
 
 select {
     padding: 0px;
@@ -104,4 +122,21 @@ select {
         width: 28%;
         font-size: 75%;
     }
+}
+
+::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+}
+::-webkit-scrollbar-track { background: var(--primary) }
+::-webkit-scrollbar-thumb { background: var(--secondary) }
+::-webkit-scrollbar-thumb:hover { background: var(--secondary) }
+
+::-moz-selection {
+  background-color: var(--tertiary);
+  color: var(--primary);
+}
+::selection {
+  background-color: var(--tertiary);
+  color: var(--primary);
 }

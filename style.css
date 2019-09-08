@@ -1,10 +1,21 @@
-HTML { scroll-behavior: smooth }
+HTML {
+    scroll-behavior: smooth;
+}
+
+.border {
+    animation: 1s fillBorder linear forwards;
+    position: absolute;
+    top: 0;
+    left: 50%;
+}
 
 Body {
-    padding: 10px;
+    padding: 0px 10px 10px 10px;
     background-color: var(--primary);
     color: var(--tertiary);
     animation: 1s fadeIn linear;
+    margin: 1% auto;
+    max-width: 900px;
 }
 
 h1, h2, h3, h4, h5, h6, a {
@@ -13,14 +24,19 @@ h1, h2, h3, h4, h5, h6, a {
 
 h2 { margin: 1% auto }
 
-p, p a, li {
+a { text-decoration: none }
+
+p, li {
     line-height: 1.6;
-    font-size: 115%;
+    font-size: 125%;
     font-family: monospace;
     text-decoration: none;
 }
 
-p a { color: #cb4b16 }
+h4 a {
+    color: var(--highlight);
+    
+}
 
 nav { margin: 0 -0.5% }
 
@@ -33,14 +49,34 @@ nav a, nav a:visited {
 
 nav a:hover {
     opacity: 1;
-    transition: 0.5s linear;
+    transition: 0.1s linear;
 }
 
-nav a:not(:hover) { transition: 0.5s linear }
+nav a:not(:hover) { transition: 0.1s linear }
 
 #credits { position: static }
 
 #theme-btn:hover { cursor: pointer }
+
+@keyframes fadeIn {
+    0% { opacity: 0 }
+    100% { opacity: 1 }
+}
+
+@keyframes fillBorder {
+    0% {
+        border-top: 5px solid transparent;
+        transform: scaleX(0);
+        transform-origin: 50% 50%;
+        width: 0%;
+    }
+    100% {
+        border-top: 5px solid var(--highlight);
+        transform: scaleX(1);
+        width: 100%;
+        left: 0%;
+    }
+}
 
 ::-webkit-scrollbar {
     height: 10px;
@@ -49,3 +85,12 @@ nav a:not(:hover) { transition: 0.5s linear }
 ::-webkit-scrollbar-track { background: var(--primary) }
 ::-webkit-scrollbar-thumb { background: var(--secondary) }
 ::-webkit-scrollbar-thumb:hover { background: var(--secondary) }
+
+::-moz-selection {
+  background-color: var(--tertiary);
+  color: var(--primary);
+}
+::selection {
+  background-color: var(--tertiary);
+  color: var(--primary);
+}
