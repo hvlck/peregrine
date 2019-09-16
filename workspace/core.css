@@ -2,15 +2,8 @@ HTML {
     scroll-behavior: smooth;
 }
 
-.border {
-    animation: 1s fillBorder linear forwards;
-    position: absolute;
-    top: 0;
-    left: 50%;
-}
-
 Body {
-    padding: 0px 10px 10px 10px;
+    padding: 5px 10px;
     background-color: var(--primary);
     color: var(--tertiary);
     animation: 1s fadeIn linear;
@@ -69,21 +62,6 @@ textarea {
 @keyframes fadeIn {
     0% { opacity: 0 }
     100% { opacity: 1 }
-}
-
-@keyframes fillBorder {
-    0% {
-        border-top: 5px solid transparent;
-        transform: scaleX(0);
-        transform-origin: 50% 50%;
-        width: 0%;
-    }
-    100% {
-        border-top: 5px solid var(--highlight);
-        transform: scaleX(1);
-        width: 100%;
-        left: 0%;
-    }
 }
 
 #reset {
