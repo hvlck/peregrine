@@ -24,18 +24,29 @@ h1, h2, h3, h4, h5, h6, a {
 
 h2 { margin: 1% auto }
 
-a { text-decoration: none }
+h3 a {
+    color: var(--highlight);
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+}
+
+h3 a:hover {
+    text-decoration: none;
+    border-bottom: 3px solid var(--highlight);
+    transition: 0.1s linear;
+}
+
+h3 a:not(:hover) {
+    border-bottom: 3px solid transparent;
+    transition: 0.1s linear;
+    text-decoration: none;
+}
 
 p, li {
     line-height: 1.6;
     font-size: 125%;
     font-family: monospace;
     text-decoration: none;
-}
-
-h4 a {
-    color: var(--highlight);
-    
 }
 
 nav { margin: 0 -0.5% }
@@ -45,9 +56,11 @@ nav a, nav a:visited {
     opacity: 0.7;
     text-decoration: none;
     margin: 1% 0.5%;
+    border-bottom: none;
 }
 
 nav a:hover {
+    border-bottom: none;
     opacity: 1;
     transition: 0.1s linear;
 }
