@@ -19,28 +19,16 @@ nav a, nav a:visited {
     margin: 1.5% 0.5%;
 }
 
-nav a:hover, #file-upload-btn:hover {
+nav a:hover {
     opacity: 1;
     transition: 0.1s linear;
 }
 
-nav a:not(:hover), #file-upload-btn:not(:hover) { transition: 0.1s linear }
+nav a:not(:hover) { transition: 0.1s linear }
 
-.function-btn {
-    border-bottom: 2px solid var(--tertiary);
-}
+.function-btn { border-bottom: 2px solid var(--tertiary) }
 
-#file-upload-btn {
-    border: none;
-    border-bottom: 2px solid var(--tertiary);
-    background: transparent;
-    color: var(--tertiary);
-    opacity: 0.7;
-    text-decoration: none;
-    font-size: inherit;
-}
-
-#settings-btn:hover, #save-btn:hover, #theme-btn:hover, #download-btn:hover, #reset:hover, #reset-default:hover, #reset-all:hover, #file-upload-btn:hover { cursor: pointer }
+#settings-btn:hover, #save-btn:hover, #theme-btn:hover, #download-btn:hover, #reset:hover, #reset-default:hover, #reset-all:hover { cursor: pointer }
 
 textarea {
     display: block;
@@ -107,7 +95,7 @@ select {
 }
 
 @media only screen and (max-width: 600px) {
-    nav a, #file-upload-btn {
+    nav a {
         font-size: 70%;
     }
     select {
