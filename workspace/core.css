@@ -3,7 +3,7 @@ HTML {
 }
 
 Body {
-    padding: 5px 10px;
+    padding: 5px 5px 0px 5px;
     background-color: var(--primary);
     color: var(--tertiary);
     animation: 1s fadeIn linear;
@@ -32,7 +32,7 @@ nav a:not(:hover) { transition: 0.1s linear }
 
 textarea {
     display: block;
-    padding: 8px;
+    padding: 4px;
     margin: 1% auto 0 auto;
     resize: none;
 
@@ -86,6 +86,15 @@ select {
 }
 
 #saved-popup { display: none }
+
+@media only screen and (max-width:5000px) {
+    body { overflow-x: hidden }
+}
+
+@media only screen and (max-width:600px) and (max-height:307px) {
+    nav { margin: -2.5% auto }
+    textarea { margin: 2% auto }
+}
 
 @media only screen and (max-width:768px) {
     select {
