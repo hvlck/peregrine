@@ -30,6 +30,20 @@ window.onload = function start() {
     const updateCounts = setInterval(count, 1);
 }
 
+function readNewFile(input) {
+    let file = input.files[0];
+    let fileReader = new FileReader();
+    fileReader.readAsText(file);
+  
+    fileReader.onload = function showNewFile() {
+      text.value = fileReader.result;
+    };
+
+    fileReader.onerror = function displayError() {
+        alert('Something Went Wrong. Please try again.');
+    };
+};
+
 // Manual Saving
 
 document.getElementById('save-btn').onclick = function() { save(); }
@@ -59,8 +73,7 @@ let hr = new Date();
 if (hr.getHours() >= 18 || hr.getHours() <= 7) {
     styleSheet.setAttribute('href', 'themes/dark.css')
     themeBtn.innerHTML = 'Dark';
-}
-else {
+} else {
     styleSheet.setAttribute('href', 'themes/light.css')
     themeBtn.innerHTML = 'Light'
 }
