@@ -111,6 +111,7 @@ select * { color: #181818 }
 }
 
 @media only screen and (max-width:768px) {
+    #file-upload-btn, #download-btn { display: none }
     select {
         width: 15%;
         font-size: 75%;
@@ -119,7 +120,7 @@ select * { color: #181818 }
 
 @media only screen and (max-width: 600px) {
     nav a {
-        font-size: 70%;
+        font-size: 90%;
     }
     select {
         width: 28%;
