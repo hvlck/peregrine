@@ -53,7 +53,7 @@ textarea {
     background-color: var(--primary);
 
     display: none;
-    margin: 0.25% -0.1%;
+    margin: 0.5% -0.1%;
 
     width: 99%;
     height: 5vh;
@@ -78,12 +78,26 @@ textarea {
 #reset:not(:hover) { transition: 0.1s linear }
 
 select {
+    color: var(--tertiary);
     padding: 0px;
     width: 8.25%;
     
-    border: 2px solid var(--secondary);
+    border: none;
+    border-bottom: 2px solid var(--tertiary);
+    
+    opacity: 0.7;
+    background-color: transparent;
     font-size: 100%;
 }
+
+select:hover {
+    opacity: 1;
+    transition: 0.1s linear;
+}
+
+select:not(:hover) { transition: 0.1s linear }
+
+select * { color: #181818 }
 
 #saved-popup { display: none }
 
