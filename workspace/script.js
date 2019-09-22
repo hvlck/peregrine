@@ -5,10 +5,17 @@ const styleSheet = document.getElementById('theme');
 const themeBtn = document.getElementById('theme-btn')
 const downloadBtn = document.getElementById('download-btn');
 
-const text = document.querySelector('textarea');
+const wordCount = document.getElementById('word-count');
 
 const savePopUp = document.getElementById('saved-popup');
+
+const settingsBtn = document.getElementById('settings-btn');
 const settingsMenu = document.getElementById('settings-menu');
+
+const toggleEditor = document.getElementById('toggle-editor-btn');
+let editorMode = true; // False is basic mode, true is advanced mode //
+
+const text = document.querySelector('textarea');
 
 window.onload = function start() {
     text.value = '';
@@ -30,77 +37,9 @@ window.onload = function start() {
     const updateCounts = setInterval(count, 1);
 }
 
-function readNewFile(input) {
-    let file = input.files[0];
-    let fileReader = new FileReader();
-    fileReader.readAsText(file);
-  
-    fileReader.onload = function showNewFile() {
-      text.value = fileReader.result;
-    };
-
-    fileReader.onerror = function displayError() {
-        alert('Something Went Wrong. Please try again.');
-    };
-};
-
-// Manual Saving
-
-document.getElementById('save-btn').onclick = function() { save(); }
-
-// Toggles Theme
-
-themeBtn.onclick = function changeTheme() {
-    let themeType = document.getElementById('theme').getAttribute('href');
-    if (themeType == 'themes/light.css') {
-        styleSheet.setAttribute('href', 'themes/light-solarized.css');
-        themeBtn.innerHTML = 'Light Solarized';
-    } else if (themeType == 'themes/light-solarized.css') {
-        styleSheet.setAttribute('href', 'themes/dark.css');
-        themeBtn.innerHTML = 'Dark';
-    } else if (themeType == 'themes/dark.css') {
-        styleSheet.setAttribute('href', 'themes/dark-solarized.css');
-        themeBtn.innerHTML = 'Dark Solarized'
-    } else if (themeType == 'themes/dark-solarized.css') {
-        styleSheet.setAttribute('href', 'themes/light.css');
-        themeBtn.innerHTML = 'Light'
-    }
-}
-
-// Automatic Theme Changer
-
-let hr = new Date();
-if (hr.getHours() >= 18 || hr.getHours() <= 7) {
-    styleSheet.setAttribute('href', 'themes/dark.css')
-    themeBtn.innerHTML = 'Dark';
-} else {
-    styleSheet.setAttribute('href', 'themes/light.css')
-    themeBtn.innerHTML = 'Light'
-}
-
-// Character and Word Count
-
-function count() {
-    let value = text.value;
-    let chars = value.length;
-    if (chars == 1) {
-        document.getElementById('char-count').innerHTML = chars + ' Character';
-    } else {
-        document.getElementById('char-count').innerHTML = chars + ' Characters';
-    }
-    let words = value.trim().split(/\s+/).length;
-    if (chars == 0 && words == 1) {
-        document.getElementById('word-count').innerHTML = '0 Words';
-    } else if (words == 1) {
-        document.getElementById('word-count').innerHTML = words + ' Word';
-    } else {
-        document.getElementById('word-count').innerHTML = words + ' Words';
-    }
-}
-
 // Settings
 
-document.getElementById('settings-btn').onclick = function toggleSettings() {
+settingsBtn.onclick = function toggleSettings() {
     if (settingsMenu.style.display == 'block') {
         settingsMenu.style.display = 'none';
     } else {
@@ -137,6 +76,10 @@ document.getElementById('reset').onclick = function reset() {
     else { return };
 }
 
+// Manual Saving
+
+document.getElementById('save-btn').onclick = function() { save(); }
+
 // Saves Text to LocalStorage
 
 function save() {
@@ -145,6 +88,36 @@ function save() {
     savePopUp.style.display = 'inline';
 
     setTimeout(function() { savePopUp.style.display = 'none'}, 3000 )
+}
+
+// Toggles Theme
+
+themeBtn.onclick = function changeTheme() {
+    let themeType = document.getElementById('theme').getAttribute('href');
+    if (themeType == 'themes/light.css') {
+        styleSheet.setAttribute('href', 'themes/light-solarized.css');
+        themeBtn.innerHTML = 'Light Solarized';
+    } else if (themeType == 'themes/light-solarized.css') {
+        styleSheet.setAttribute('href', 'themes/dark.css');
+        themeBtn.innerHTML = 'Dark';
+    } else if (themeType == 'themes/dark.css') {
+        styleSheet.setAttribute('href', 'themes/dark-solarized.css');
+        themeBtn.innerHTML = 'Dark Solarized'
+    } else if (themeType == 'themes/dark-solarized.css') {
+        styleSheet.setAttribute('href', 'themes/light.css');
+        themeBtn.innerHTML = 'Light'
+    }
+}
+
+// Automatic Theme Changer
+
+let hr = new Date();
+if (hr.getHours() >= 18 || hr.getHours() <= 7) {
+    styleSheet.setAttribute('href', 'themes/dark.css')
+    themeBtn.innerHTML = 'Dark';
+} else {
+    styleSheet.setAttribute('href', 'themes/light.css')
+    themeBtn.innerHTML = 'Light'
 }
 
 // Download Function
@@ -162,4 +135,51 @@ downloadBtn.onclick = function download() {
 
     document.body.appendChild(link)
     link.click();
+}
+
+// File Uploader Function
+
+function readNewFile(input) {
+    let file = input.files[0];
+    let fileReader = new FileReader();
+    fileReader.readAsText(file);
+  
+    fileReader.onload = function showNewFile() {
+      text.value = fileReader.result;
+    };
+
+    fileReader.onerror = function displayError() {
+        alert('Something Went Wrong. Please try again.');
+    };
+};
+
+// Editor Mode Toggle
+
+toggleEditor.onclick = function changeEditorMode() {
+    if (editorMode == true) {
+        editorMode = false;
+        document.getElementById('advanced-editor').style.display = 'none';
+        toggleEditor.innerHTML = 'Advanced Mode';
+    } else if (editorMode == false) {
+        editorMode = true;
+        document.getElementById('advanced-editor').style.display = 'inline';
+        toggleEditor.innerHTML = 'Basic Mode';
+    } else {
+        return;
+    }
+}
+
+// Character and Word Count
+
+function count() {
+    let value = text.value;
+    let chars = value.length;
+    let words = value.trim().split(/\s+/).length;
+    if (chars == 0 && words == 1) {
+        wordCount.innerHTML = '0 Words';
+    } else if (words == 1) {
+        wordCount.innerHTML = words + ' Word';
+    } else {
+        wordCount.innerHTML = words + ' Words';
+    }
 }
