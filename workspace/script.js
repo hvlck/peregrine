@@ -42,8 +42,10 @@ window.onload = function start() {
 settingsBtn.onclick = function toggleSettings() {
     if (settingsMenu.style.display == 'block') {
         settingsMenu.style.display = 'none';
+        text.style.minHeight = '92.8vh';
     } else {
         settingsMenu.style.display = 'block';
+        text.style.minHeight = '87.6vh';
     }
 }
 
@@ -159,17 +161,17 @@ toggleEditor.onclick = function changeEditorMode() {
     if (editorMode == true) {
         editorMode = false;
         document.getElementById('advanced-editor').style.display = 'none';
-        toggleEditor.innerHTML = 'Advanced Mode';
+        toggleEditor.innerHTML = 'Basic Mode';
     } else if (editorMode == false) {
         editorMode = true;
         document.getElementById('advanced-editor').style.display = 'inline';
-        toggleEditor.innerHTML = 'Basic Mode';
+        toggleEditor.innerHTML = 'Advanced Mode';
     } else {
         return;
     }
 }
 
-// Character and Word Count
+// Word Count
 
 function count() {
     let value = text.value;
