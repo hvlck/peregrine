@@ -97,15 +97,12 @@ function save() {
 themeBtn.onclick = function changeTheme() {
     let themeType = document.getElementById('theme').getAttribute('href');
     if (themeType == 'themes/light.css') {
-        styleSheet.setAttribute('href', 'themes/light-solarized.css');
-        themeBtn.innerHTML = 'Light Solarized';
-    } else if (themeType == 'themes/light-solarized.css') {
         styleSheet.setAttribute('href', 'themes/dark.css');
         themeBtn.innerHTML = 'Dark';
     } else if (themeType == 'themes/dark.css') {
-        styleSheet.setAttribute('href', 'themes/dark-solarized.css');
-        themeBtn.innerHTML = 'Dark Solarized'
-    } else if (themeType == 'themes/dark-solarized.css') {
+        styleSheet.setAttribute('href', 'themes/solarized.css');
+        themeBtn.innerHTML = 'Solarized';
+    } else if (themeType == 'themes/solarized.css') {
         styleSheet.setAttribute('href', 'themes/light.css');
         themeBtn.innerHTML = 'Light'
     }
