@@ -1,8 +1,6 @@
 # peregrine
  Minimalist text editor
 
-## Changelog
-+ Added file uploader
-+ Updated homepage
-+ Changed settings menu design
-+ Made zooming more responsive
+## Changelog (September 22nd, 2019)
++ Added advanced and basic editor modes
++ Removed small overflow, character count, and light-solarized theme

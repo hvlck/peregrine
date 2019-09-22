@@ -11,7 +11,7 @@ Body {
 }
 
 nav {
-    margin: -0.25% -0.5%;
+    margin: -0.28% -0.5%;
 }
 
 nav a, nav a:visited {
@@ -36,7 +36,7 @@ nav a:not(:hover) { transition: 0.1s linear }
 textarea {
     display: block;
     padding: 0px 10px;
-    margin: 1% auto -1%;
+    margin: 1% auto 0;
     resize: none;
 
     background: transparent;
