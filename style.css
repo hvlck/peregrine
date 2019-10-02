@@ -1,13 +1,4 @@
-HTML {
-    scroll-behavior: smooth;
-}
-
-.border {
-    animation: 1s fillBorder linear forwards;
-    position: absolute;
-    top: 0;
-    left: 50%;
-}
+HTML { scroll-behavior: smooth }
 
 Body {
     padding: 0px 10px 10px 10px;
@@ -18,28 +9,52 @@ Body {
     max-width: 900px;
 }
 
+.border {
+    animation: 1s fillBorder linear forwards;
+    position: absolute;
+    top: 0;
+    left: 50%;
+}
+
 h1, h2, h3, h4, h5, h6, a {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-h2 { margin: 1% auto }
+h2  {
+    margin: 1.5% auto;
+    font-size: 18pt;
+}
 
-h3 a {
+h3 {
+    margin: 1% auto;
+    font-size: 16pt;
+}
+
+h4 {
+    margin: 0.5% auto -1% auto;
+    font-size: 14pt;
+}
+
+h3 a, p a {
     color: var(--highlight);
     text-decoration: none;
     border-bottom: 3px solid transparent;
 }
 
-h3 a:hover {
+h3 a:hover, p a:hover {
     text-decoration: none;
     border-bottom: 3px solid var(--highlight);
     transition: 0.1s linear;
 }
 
-h3 a:not(:hover) {
+h3 a:not(:hover), p a:not(:hover) {
     border-bottom: 3px solid transparent;
     transition: 0.1s linear;
     text-decoration: none;
+}
+
+p a {
+    font-family: monospace;
 }
 
 p, li {

@@ -64,7 +64,7 @@ document.getElementById('font-size').oninput = function updateFontSize() {
 // Reset All Settings and Text
 
 document.getElementById('reset').onclick = function reset() {
-    let confrm = confirm('Are you sure?  This will reset everything, including your text.');
+    let confrm = confirm('Are you sure?  This will reset everything, including your writing.');
     if (confrm == true) {
         localStorage.clear();
 
@@ -134,6 +134,7 @@ downloadBtn.onclick = function download() {
 
     document.body.appendChild(link)
     link.click();
+    window.URL.revokeObjectURL(url);
 }
 
 // File Uploader Function
@@ -144,7 +145,7 @@ function readNewFile(input) {
     fileReader.readAsText(file);
   
     fileReader.onload = function showNewFile() {
-      text.value = fileReader.result;
+      text.value += fileReader.result;
     };
 
     fileReader.onerror = function displayError() {

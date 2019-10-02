@@ -14,14 +14,14 @@
         <nav>
             <span id="advanced-editor">
                 <a id="home-link" href="../">Home</a>
-                <a class="function-btn" id="settings-btn">Settings</a>
-                <a class="function-btn" id="save-btn">Save</a>
-                <a class="function-btn" id="theme-btn"></a>
-                <a class="function-btn" id="download-btn">Download</a>
+                <a id="settings-btn">Settings</a>
+                <a id="save-btn">Save</a>
+                <a id="theme-btn"></a>
+                <a id="download-btn">Download</a>
                 <input id="file-uploader" type="file" onchange="readNewFile(this)" style="display: none;" />
-                <a id="file-upload-btn" class="function-btn" onclick="document.getElementById('file-uploader').click();">Upload</a>
+                <a id="file-upload-btn" onclick="document.getElementById('file-uploader').click();">Upload</a>
             </span>
-            <a class="function-btn" id="toggle-editor-btn">Advanced Mode</a>
+            <a id="toggle-editor-btn">Advanced Mode</a>
             <a id="word-count"></a>
             <a id="saved-popup">Saved!</a>
         </nav>
@@ -81,7 +81,7 @@
             <option value="80pt">80pt</option>
         </select>
 
-        <span id="reset" class="function-btn" style="border: none">Reset</span>
+        <span id="reset" style="border: none">Reset</span>
     </div>
 
     <div class="workspace">
