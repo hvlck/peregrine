@@ -58,12 +58,11 @@ textarea {
 
 .settings-menu > * { display: inline }
 
-#reset {
-    opacity: 0.7;
-}
+#reset { opacity: 0.7 }
 
 #reset:hover {
     opacity: 1;
+    cursor: pointer;
     transition: 0.1s linear;
 }
 
@@ -72,7 +71,7 @@ textarea {
 select {
     color: var(--tertiary);
     padding: 0px;
-    width: 8.25%;
+    width: 10%;
     
     border: none;
     border-bottom: 2px solid var(--tertiary);
@@ -102,9 +101,20 @@ select * { color: #181818 }
     body { overflow-x: hidden }
 }
 
+@media only screen and (max-width:1200px) and (max-height:609px) {
+    .settings-menu { margin: 0 -0.1% 0 0 }
+    .settings-menu select { width: 20% }
+}
+
+@media only screen and (max-width:830px) and (max-height:450px) {
+    .settings-menu { margin: 0 -0.1% 0 0 }
+    textarea { margin: 1% auto }
+}
+
 @media only screen and (max-width:600px) and (max-height:307px) {
     nav { margin: -2.5% auto }
-    textarea { margin: 2% auto }
+    .settings-menu { margin: 2% -0.1% 2% 0 }
+    textarea { margin: 3% auto }
 }
 
 @media only screen and (max-width:768px) {
@@ -116,9 +126,7 @@ select * { color: #181818 }
 }
 
 @media only screen and (max-width: 600px) {
-    nav a {
-        font-size: 90%;
-    }
+    nav a { font-size: 90% }
     select {
         width: 28%;
         font-size: 75%;
@@ -131,8 +139,6 @@ select * { color: #181818 }
 }
 ::-webkit-scrollbar-track { background: var(--primary) }
 ::-webkit-scrollbar-thumb { background: var(--secondary) }
-::-webkit-scrollbar-thumb:hover { background: var(--secondary) }
-
 ::-moz-selection {
   background-color: var(--tertiary);
   color: var(--primary);

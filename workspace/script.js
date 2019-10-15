@@ -122,19 +122,17 @@ if (hr.getHours() >= 18 || hr.getHours() <= 7) {
 // Download Function
 
 downloadBtn.onclick = function download() {
-    let fileName = 'text';
-
-    let txtValue = text.value;
-    let blob = new Blob([txtValue], {type: 'text/plain'});
-    let url = URL.createObjectURL(blob);
+    let textValue = text.value;
+    let downloadLink = document.createElement('a');
     
-    let link = document.createElement('a');
-    link.download = fileName;
-    link.href = url;
+    downloadLink.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(textValue));
+    downloadLink.setAttribute('download', prompt('What do you want to name your file?') + '.txt');
 
-    document.body.appendChild(link)
-    link.click();
-    window.URL.revokeObjectURL(url);
+    downloadLink.style.display = 'none';
+    document.body.appendChild(downloadLink);
+
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
 }
 
 // File Uploader Function
