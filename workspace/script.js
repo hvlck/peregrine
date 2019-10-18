@@ -3,8 +3,8 @@
 const styleSheet = document.getElementById('theme');
 
 const themeBtn = document.getElementById('theme-btn');
-const printBtn = document.getElementById('print-btn');
 const fullScreenBtn = document.getElementById('fullscreen-btn');
+const printBtn = document.getElementById('print-btn');
 const downloadBtn = document.getElementById('download-btn');
 
 const wordCount = document.getElementById('word-count');
@@ -13,9 +13,6 @@ const savePopUp = document.getElementById('saved-popup');
 
 const settingsBtn = document.getElementById('settings-btn');
 const settingsMenu = document.getElementById('settings-menu');
-
-const toggleEditor = document.getElementById('toggle-editor-btn');
-let editorMode = true; // False is basic mode, true is advanced mode //
 
 const text = document.querySelector('textarea');
 
@@ -110,12 +107,8 @@ themeBtn.onclick = function changeTheme() {
     }
 }
 
-// Printing
-printBtn.onclick = function print() {
-    window.print();
-}
-
 // Fullscreen
+
 fullScreenBtn.onclick = function toggleFullScreen() {
     if (document.documentElement.requestFullscreen) {
         document.documentElement.requestFullscreen();
@@ -137,6 +130,26 @@ fullScreenBtn.onclick = function toggleFullScreen() {
         document.msExitFullscreen();
     }
 }
+
+// File Uploader Function
+
+function readNewFile(input) {
+    let file = input.files[0];
+    let fileReader = new FileReader();
+    fileReader.readAsText(file);
+  
+    fileReader.onload = function showNewFile() {
+      text.value += fileReader.result;
+    };
+
+    fileReader.onerror = function displayError() {
+        alert('Something Went Wrong. Please try again.');
+    };
+};
+
+// Printing
+
+printBtn.onclick = function print() { window.print() }
 
 // Automatic Theme Changer
 
@@ -163,38 +176,6 @@ downloadBtn.onclick = function download() {
 
     downloadLink.click();
     document.body.removeChild(downloadLink);
-}
-
-// File Uploader Function
-
-function readNewFile(input) {
-    let file = input.files[0];
-    let fileReader = new FileReader();
-    fileReader.readAsText(file);
-  
-    fileReader.onload = function showNewFile() {
-      text.value += fileReader.result;
-    };
-
-    fileReader.onerror = function displayError() {
-        alert('Something Went Wrong. Please try again.');
-    };
-};
-
-// Editor Mode Toggle
-
-toggleEditor.onclick = function changeEditorMode() {
-    if (editorMode == true) {
-        editorMode = false;
-        document.getElementById('advanced-editor').style.display = 'none';
-        toggleEditor.innerHTML = 'Basic Mode';
-    } else if (editorMode == false) {
-        editorMode = true;
-        document.getElementById('advanced-editor').style.display = 'inline';
-        toggleEditor.innerHTML = 'Advanced Mode';
-    } else {
-        return;
-    }
 }
 
 // Word Count
