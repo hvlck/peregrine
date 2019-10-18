@@ -22,6 +22,11 @@ window.onload = function start() {
     let getText = localStorage.getItem('text');
     text.value = getText;
 
+    let getTheme = localStorage.getItem('theme');
+    if (getTheme == null) { getTheme = 'Dark' }
+    themeBtn.innerHTML = getTheme;
+    styleSheet.setAttribute('href', `themes/${getTheme.toLowerCase()}.css`);
+    
     let getFont = localStorage.getItem('font');
     if (getFont == null) { getFont = 'monospace' }
     document.getElementById('font').value = getFont;
@@ -68,9 +73,11 @@ document.getElementById('reset').onclick = function reset() {
         localStorage.clear();
 
         text.value = '';
+        styleSheet.setAttribute('href', 'themes/dark.css');
         text.style.fontFamily = 'monospace';
         text.style.fontSize = '12pt';
 
+        themeBtn.innerHTML = 'Dark';
         document.getElementById('font').value = 'monospace';
         document.getElementById('font-size').value = '12pt';
     }
@@ -86,8 +93,8 @@ document.getElementById('save-btn').onclick = function() { save(); }
 function save() {
     let value = text.value;
     localStorage.setItem('text', value);
+    
     savePopUp.style.display = 'inline';
-
     setTimeout(function() { savePopUp.style.display = 'none'}, 3000 )
 }
 
@@ -97,12 +104,15 @@ themeBtn.onclick = function changeTheme() {
     let themeType = document.getElementById('theme').getAttribute('href');
     if (themeType == 'themes/light.css') {
         styleSheet.setAttribute('href', 'themes/dark.css');
+        localStorage.setItem('theme', 'Dark');
         themeBtn.innerHTML = 'Dark';
     } else if (themeType == 'themes/dark.css') {
         styleSheet.setAttribute('href', 'themes/solarized.css');
+        localStorage.setItem('theme', 'Solarized');
         themeBtn.innerHTML = 'Solarized';
     } else if (themeType == 'themes/solarized.css') {
         styleSheet.setAttribute('href', 'themes/light.css');
+        localStorage.setItem('theme', 'Light');
         themeBtn.innerHTML = 'Light'
     }
 }
@@ -150,17 +160,6 @@ function readNewFile(input) {
 // Printing
 
 printBtn.onclick = function print() { window.print() }
-
-// Automatic Theme Changer
-
-let hr = new Date();
-if (hr.getHours() >= 18 || hr.getHours() <= 7) {
-    styleSheet.setAttribute('href', 'themes/dark.css')
-    themeBtn.innerHTML = 'Dark';
-} else {
-    styleSheet.setAttribute('href', 'themes/light.css')
-    themeBtn.innerHTML = 'Light'
-}
 
 // Download Function
 
