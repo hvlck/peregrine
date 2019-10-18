@@ -2,7 +2,9 @@
 
 const styleSheet = document.getElementById('theme');
 
-const themeBtn = document.getElementById('theme-btn')
+const themeBtn = document.getElementById('theme-btn');
+const printBtn = document.getElementById('print-btn');
+const fullScreenBtn = document.getElementById('fullscreen-btn');
 const downloadBtn = document.getElementById('download-btn');
 
 const wordCount = document.getElementById('word-count');
@@ -105,6 +107,34 @@ themeBtn.onclick = function changeTheme() {
     } else if (themeType == 'themes/solarized.css') {
         styleSheet.setAttribute('href', 'themes/light.css');
         themeBtn.innerHTML = 'Light'
+    }
+}
+
+// Printing
+printBtn.onclick = function print() {
+    window.print();
+}
+
+// Fullscreen
+fullScreenBtn.onclick = function toggleFullScreen() {
+    if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+    } else if (document.documentElement.mozRequestFullScreen) { /* Firefox */
+        document.documentElement.mozRequestFullScreen();
+    } else if (document.documentElement.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+        document.documentElement.webkitRequestFullscreen();
+    } else if (document.documentElement.msRequestFullscreen) { /* IE/Edge */
+        document.documentElement.msRequestFullscreen();
+    }
+
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
     }
 }
 
