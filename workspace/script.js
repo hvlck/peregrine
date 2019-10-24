@@ -16,7 +16,7 @@ const settingsMenu = document.getElementById('settings-menu');
 
 const text = document.querySelector('textarea');
 
-window.onload = function start() {
+window.addEventListener('load', function start() {
     text.value = '';
     
     let getText = localStorage.getItem('text');
@@ -39,11 +39,11 @@ window.onload = function start() {
 
     const updateSave = setInterval(save, 20000);
     const updateCounts = setInterval(count, 1);
-}
+});
 
 // Settings
 
-settingsBtn.onclick = function toggleSettings() {
+settingsBtn.addEventListener('click', function toggleSettings() {
     if (settingsMenu.style.display == 'block') {
         settingsMenu.style.display = 'none';
         text.style.minHeight = '92.8vh';
@@ -51,23 +51,23 @@ settingsBtn.onclick = function toggleSettings() {
         settingsMenu.style.display = 'block';
         text.style.minHeight = '87.6vh';
     }
-}
+});
 
-document.getElementById('font').oninput = function updateFont() {
+document.getElementById('font').addEventListener('input', function updateFont() {
     let newFont = document.getElementById('font').value;
     localStorage.setItem('font', newFont);
     text.style.fontFamily = newFont;
-}
+});
 
-document.getElementById('font-size').oninput = function updateFontSize() {
+document.getElementById('font-size').addEventListener('input', function updateFontSize() {
     let newFontSize = document.getElementById('font-size').value;
     localStorage.setItem('fontSize', newFontSize);
     text.style.fontSize = newFontSize;
-}
+});
 
 // Reset All Settings and Text
 
-document.getElementById('reset').onclick = function reset() {
+document.getElementById('reset').addEventListener('click', function reset() {
     let confrm = confirm('Are you sure?  This will reset everything, including your writing.');
     if (confrm == true) {
         localStorage.clear();
@@ -82,11 +82,11 @@ document.getElementById('reset').onclick = function reset() {
         document.getElementById('font-size').value = '12pt';
     }
     else { return };
-}
+});
 
 // Manual Saving
 
-document.getElementById('save-btn').onclick = function() { save(); }
+document.getElementById('save-btn').addEventListener('click', function() { save(); });
 
 // Saves Text to LocalStorage
 
@@ -100,7 +100,7 @@ function save() {
 
 // Toggles Theme
 
-themeBtn.onclick = function changeTheme() {
+themeBtn.addEventListener('click', function changeTheme() {
     let themeType = document.getElementById('theme').getAttribute('href');
     if (themeType == 'themes/light.css') {
         styleSheet.setAttribute('href', 'themes/dark.css');
@@ -115,11 +115,11 @@ themeBtn.onclick = function changeTheme() {
         localStorage.setItem('theme', 'Light');
         themeBtn.innerHTML = 'Light'
     }
-}
+});
 
 // Fullscreen
 
-fullScreenBtn.onclick = function toggleFullScreen() {
+fullScreenBtn.addEventListener('click', function toggleFullScreen() {
     if (document.documentElement.requestFullscreen) {
         document.documentElement.requestFullscreen();
     } else if (document.documentElement.mozRequestFullScreen) { /* Firefox */
@@ -139,7 +139,7 @@ fullScreenBtn.onclick = function toggleFullScreen() {
     } else if (document.msExitFullscreen) {
         document.msExitFullscreen();
     }
-}
+});
 
 // File Uploader Function
 
@@ -159,11 +159,11 @@ function readNewFile(input) {
 
 // Printing
 
-printBtn.onclick = function print() { window.print() }
+printBtn.addEventListener('click', function print() { window.print() });
 
 // Download Function
 
-downloadBtn.onclick = function download() {
+downloadBtn.addEventListener('click', function download() {
     let textValue = text.value;
     let downloadLink = document.createElement('a');
     
@@ -175,7 +175,7 @@ downloadBtn.onclick = function download() {
 
     downloadLink.click();
     document.body.removeChild(downloadLink);
-}
+});
 
 // Word Count
 

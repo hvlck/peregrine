@@ -57,7 +57,7 @@
 
     <script>
         const styleSheet = document.getElementById('theme');
-        document.getElementById('theme-btn').onclick = function changeTheme() {
+        document.getElementById('theme-btn').addEventListener('click', function changeTheme() {
             let currentStyle = styleSheet.getAttribute('href');
             if (currentStyle == 'workspace/themes/light.css') {
                 styleSheet.setAttribute('href', 'workspace/themes/dark.css');
@@ -66,7 +66,7 @@
                 styleSheet.setAttribute('href', 'workspace/themes/light.css');
                 document.getElementById('theme-btn').innerHTML = 'Light';
             }
-        }
+        });
     </script>
 
 </body>
