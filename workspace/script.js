@@ -6,6 +6,7 @@ const themeBtn = document.getElementById('theme-btn');
 const fullScreenBtn = document.getElementById('fullscreen-btn');
 const printBtn = document.getElementById('print-btn');
 const downloadBtn = document.getElementById('download-btn');
+const downloadTextInp = document.getElementById('download-text-name');
 
 const wordCount = document.getElementById('word-count');
 
@@ -117,30 +118,6 @@ themeBtn.addEventListener('click', function changeTheme() {
     }
 });
 
-// Fullscreen
-
-fullScreenBtn.addEventListener('click', function toggleFullScreen() {
-    if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen();
-    } else if (document.documentElement.mozRequestFullScreen) { /* Firefox */
-        document.documentElement.mozRequestFullScreen();
-    } else if (document.documentElement.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
-        document.documentElement.webkitRequestFullscreen();
-    } else if (document.documentElement.msRequestFullscreen) { /* IE/Edge */
-        document.documentElement.msRequestFullscreen();
-    }
-
-    if (document.exitFullscreen) {
-        document.exitFullscreen();
-    } else if (document.mozCancelFullScreen) {
-        document.mozCancelFullScreen();
-    } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) {
-        document.msExitFullscreen();
-    }
-});
-
 // File Uploader Function
 
 function readNewFile(input) {
@@ -163,18 +140,28 @@ printBtn.addEventListener('click', function print() { window.print() });
 
 // Download Function
 
+let fileName;
+let fileNameOpened = false;
+
 downloadBtn.addEventListener('click', function download() {
-    let textValue = text.value;
-    let downloadLink = document.createElement('a');
+    if (fileNameOpened == true) {
+        fileName = downloadTextInp.value;
+        let textValue = text.value;
+        let downloadLink = document.createElement('a');
     
-    downloadLink.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(textValue));
-    downloadLink.setAttribute('download', prompt('What do you want to name your file?') + '.txt');
+        downloadLink.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(textValue));
+        downloadLink.setAttribute('download', fileName + '.txt');
 
-    downloadLink.style.display = 'none';
-    document.body.appendChild(downloadLink);
+        downloadLink.style.display = 'none';
+        document.body.appendChild(downloadLink);
 
-    downloadLink.click();
-    document.body.removeChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+        downloadTextInp.style.display = 'none';
+    } else {
+        downloadTextInp.style.display = 'inline';
+        fileNameOpened = true;
+    }
 });
 
 // Word Count

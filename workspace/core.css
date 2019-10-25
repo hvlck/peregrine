@@ -68,7 +68,7 @@ textarea {
 
 #reset:not(:hover) { transition: 0.1s linear }
 
-select {
+select, input {
     color: var(--tertiary);
     padding: 0px;
     width: 10%;
@@ -81,12 +81,12 @@ select {
     font-size: 100%;
 }
 
-select:hover {
+select:hover, select:focus, input:hover, input:focus {
     opacity: 1;
     transition: 0.1s linear;
 }
 
-select:not(:hover) { transition: 0.1s linear }
+select:not(:hover), select:not(:focus), input:not(:hover), input:not(:focus) { transition: 0.1s linear }
 
 select * { color: #181818 }
 
