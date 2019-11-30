@@ -4,33 +4,40 @@ Body {
     padding: 5px 0px 0px 0px;
     background-color: var(--primary);
     color: var(--tertiary);
+    margin: 0 auto;
+    overflow-y: hidden;
     animation: 1s fadeIn linear;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-nav { margin: -0.28% -0.5% }
+nav {
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+    display: none;
+}
 
 nav a, nav a:visited {
     color: var(--tertiary);
     opacity: 0.7;
+    padding: 5px;
     text-decoration: none;
-    margin: 1.5% 0.5%;
+    margin: 0 0.5%;
 }
 
 nav a:hover {
     opacity: 1;
     cursor: pointer;
-    transition: 0.1s linear;
 }
 
-nav a:not(:hover) { transition: 0.1s linear }
+#file-uploader { display: none }
 
 #word-count:hover { cursor: default }
 
 textarea {
     display: block;
     padding: 0px 10px;
-    margin: 1% auto 0;
+    margin: 0.25% auto 0;
     resize: none;
 
     background: transparent;
@@ -42,31 +49,25 @@ textarea {
     font-family: monospace;
 
     min-width: 96%;
-    min-height: 92.8vh;
 }
 
 .settings-menu {
     color: var(--tertiary);
-    background-color: var(--primary);
 
     display: none;
-    margin: 0.75% -0.1% -1% 0;
-
-    width: 99%;
-    height: 5vh;
+    margin: auto;
+    text-align: center;
 }
 
-.settings-menu > * { display: inline }
+.settings-menu span {
+    opacity: 0.7;
+    margin: auto 0.5%;
+}
 
-#reset { opacity: 0.7 }
-
-#reset:hover {
+.settings-menu span:hover {
     opacity: 1;
     cursor: pointer;
-    transition: 0.1s linear;
 }
-
-#reset:not(:hover) { transition: 0.1s linear }
 
 select, input {
     color: var(--tertiary);
@@ -81,16 +82,16 @@ select, input {
     font-size: 100%;
 }
 
-select:hover, select:focus, input:hover, input:focus {
-    opacity: 1;
-    transition: 0.1s linear;
-}
-
-select:not(:hover), select:not(:focus), input:not(:hover), input:not(:focus) { transition: 0.1s linear }
+select:hover, select:focus, input:hover, input:focus { opacity: 1 }
 
 select * { color: #181818 }
 
-#saved-popup { display: none }
+:hover, :not(:hover), :focus, :not(:focus) { transition: 0.1s linear }
+
+@keyframes fadeIn {
+    0% { opacity: 0 }
+    100% { opacity: 1 }
+}
 
 @keyframes fadeIn {
     0% { opacity: 0 }
@@ -106,6 +107,10 @@ select * { color: #181818 }
     .settings-menu select { width: 20% }
 }
 
+@media only screen and (max-width:1024px) and (max-height:768px) {
+    nav { display: block }
+}
+
 @media only screen and (max-width:830px) and (max-height:450px) {
     .settings-menu { margin: 0 -0.1% 0 0 }
     textarea { margin: 1% auto }
@@ -114,11 +119,11 @@ select * { color: #181818 }
 @media only screen and (max-width:600px) and (max-height:307px) {
     nav { margin: -2.5% auto }
     .settings-menu { margin: 2% -0.1% 2% 0 }
-    textarea { margin: 3% auto }
 }
 
 @media only screen and (max-width:768px) {
-    #file-upload-btn, #download-btn, #char-count, #fullscreen-btn { display: none }
+    nav { display: block }
+    #file-upload-btn, #save-as-btn, #error { display: none }
     select {
         width: 15%;
         font-size: 75%;

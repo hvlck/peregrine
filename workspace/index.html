@@ -11,19 +11,18 @@
   </head>
 <body>
 
-    <div class="nav">
-        <nav>
-            <a id="home-link" href="../">Home</a>
+    <div class="toolbar">
+        <nav id="toolbar">
+            <a href="/">Home</a>
             <a id="settings-btn">Settings</a>
             <a id="save-btn">Save</a>
-            <a id="theme-btn"></a>
-            <a id="file-upload-btn" onclick="document.getElementById('file-uploader').click();">Upload</a>
-            <input id="file-uploader" type="file" onchange="readNewFile(this)" style="display: none;" />
-            <input id="download-text-name" type="text" placeholder="File Name" style="display: none;" />
-            <a id="download-btn">Download</a>
+            <input id="save-as-name" type="text" placeholder="text.txt" style="display: none;" />
+            <a id="save-as-btn">Save As</a>
+            <a id="file-open-btn" onclick="document.getElementById('file-uploader').click();">Open</a>
+            <input id="file-uploader" type="file" />
             <a id="print-btn">Print</a>
             <a id="word-count"></a>
-            <a id="saved-popup">Saved!</a>
+            <a id="error"></a>
         </nav>
     </div>
 
@@ -40,7 +39,8 @@
             <option value="Courier">Courier</option>
             <option value="Monaco">Monaco</option>
             <option value="Lucida Console">Lucida Console</option>
-            <option value="monospace" selected >Monospace</option>
+            <option value="monospace">Monospace</option>
+            <option value="Consolas" selected>Consolas</option>
             <option value="Arial">Arial</option>
             <option value="Arial Black">Arial Black</option>
             <option value="Helvetica">Helvetica</option>
@@ -80,14 +80,15 @@
             <option value="72pt">72pt</option>
             <option value="80pt">80pt</option>
         </select>
-
-        <span id="reset" style="border: none">Reset</span>
+        <span id="theme-btn"></span>
+        
+        <span id="reset">Reset</span>
     </div>
 
     <div class="workspace">
         <textarea placeholder="Write Here..."></textarea>
     </div>
 
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

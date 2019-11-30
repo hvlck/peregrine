@@ -3,14 +3,13 @@
 const styleSheet = document.getElementById('theme');
 
 const themeBtn = document.getElementById('theme-btn');
-const fullScreenBtn = document.getElementById('fullscreen-btn');
 const printBtn = document.getElementById('print-btn');
-const downloadBtn = document.getElementById('download-btn');
-const downloadTextInp = document.getElementById('download-text-name');
+const saveAsBtn = document.getElementById('save-as-btn');
+const saveAsNameInp = document.getElementById('save-as-name')
+const errorElem = document.getElementById('error');
+const fileUploadInp = document.getElementById('file-uploader');
 
 const wordCount = document.getElementById('word-count');
-
-const savePopUp = document.getElementById('saved-popup');
 
 const settingsBtn = document.getElementById('settings-btn');
 const settingsMenu = document.getElementById('settings-menu');
@@ -19,7 +18,8 @@ const text = document.querySelector('textarea');
 
 window.addEventListener('load', function start() {
     text.value = '';
-    
+    text.style.height = `${window.innerHeight * 0.97}px`;
+
     let getText = localStorage.getItem('text');
     text.value = getText;
 
@@ -29,7 +29,7 @@ window.addEventListener('load', function start() {
     styleSheet.setAttribute('href', `themes/${getTheme.toLowerCase()}.css`);
     
     let getFont = localStorage.getItem('font');
-    if (getFont == null) { getFont = 'monospace' }
+    if (getFont == null) { getFont = 'Consolas' }
     document.getElementById('font').value = getFont;
     text.style.fontFamily = getFont;
 
@@ -42,16 +42,24 @@ window.addEventListener('load', function start() {
     const updateCounts = setInterval(count, 1);
 });
 
+window.addEventListener('resize', function resize() {
+    text.style.height = `${window.innerHeight * 0.97}px`;
+});
+
 // Settings
 
+/// Toggles Settings Menu.  The setTimeout function solves a minor bug with the scrollbar appearing briefly. 
 settingsBtn.addEventListener('click', function toggleSettings() {
-    if (settingsMenu.style.display == 'block') {
-        settingsMenu.style.display = 'none';
-        text.style.minHeight = '92.8vh';
-    } else {
-        settingsMenu.style.display = 'block';
-        text.style.minHeight = '87.6vh';
-    }
+    text.style.height = `${window.innerHeight * 0.90}px`;
+    setTimeout(function() {
+        if (settingsMenu.style.display == 'none') {
+            text.style.height = `${window.innerHeight * 0.90}px`;
+            settingsMenu.style.display = 'block';
+        } else if (settingsMenu.style.display == 'block') {
+            text.style.height = `${window.innerHeight * 0.97}px`;
+            settingsMenu.style.display = 'none';
+        }    
+    }, 100);
 });
 
 document.getElementById('font').addEventListener('input', function updateFont() {
@@ -66,41 +74,7 @@ document.getElementById('font-size').addEventListener('input', function updateFo
     text.style.fontSize = newFontSize;
 });
 
-// Reset All Settings and Text
-
-document.getElementById('reset').addEventListener('click', function reset() {
-    let confrm = confirm('Are you sure?  This will reset everything, including your writing.');
-    if (confrm == true) {
-        localStorage.clear();
-
-        text.value = '';
-        styleSheet.setAttribute('href', 'themes/dark.css');
-        text.style.fontFamily = 'monospace';
-        text.style.fontSize = '12pt';
-
-        themeBtn.innerHTML = 'Dark';
-        document.getElementById('font').value = 'monospace';
-        document.getElementById('font-size').value = '12pt';
-    }
-    else { return };
-});
-
-// Manual Saving
-
-document.getElementById('save-btn').addEventListener('click', function() { save(); });
-
-// Saves Text to LocalStorage
-
-function save() {
-    let value = text.value;
-    localStorage.setItem('text', value);
-    
-    savePopUp.style.display = 'inline';
-    setTimeout(function() { savePopUp.style.display = 'none'}, 3000 )
-}
-
-// Toggles Theme
-
+/// Toggles Theme
 themeBtn.addEventListener('click', function changeTheme() {
     let themeType = document.getElementById('theme').getAttribute('href');
     if (themeType == 'themes/light.css') {
@@ -118,34 +92,45 @@ themeBtn.addEventListener('click', function changeTheme() {
     }
 });
 
-// File Uploader Function
+/// Reset All Settings and Text
+document.getElementById('reset').addEventListener('click', function reset() {
+    localStorage.clear();
 
-function readNewFile(input) {
-    let file = input.files[0];
-    let fileReader = new FileReader();
-    fileReader.readAsText(file);
-  
-    fileReader.onload = function showNewFile() {
-      text.value += fileReader.result;
-    };
+    text.value = '';
+    styleSheet.setAttribute('href', 'themes/dark.css');
+    text.style.fontFamily = 'Consolas';
+    text.style.fontSize = '12pt';
 
-    fileReader.onerror = function displayError() {
-        alert('Something Went Wrong. Please try again.');
-    };
-};
+    themeBtn.innerHTML = 'Dark';
+    document.getElementById('font').value = 'Consolas';
+    document.getElementById('font-size').value = '12pt';
+});
 
-// Printing
+// Manual Saving
 
-printBtn.addEventListener('click', function print() { window.print() });
+document.getElementById('save-btn').addEventListener('click', function() { save(); });
 
-// Download Function
+// Saves Text to LocalStorage
+
+function save() {
+    let value = text.value;
+    localStorage.setItem('text', value);
+    
+    document.getElementById('save-btn').innerHTML = 'Saved!'
+    setTimeout(function() { document.getElementById('save-btn').innerHTML = 'Save' }, 3000 )
+}
+
+// Download/Save As Function
 
 let fileName;
 let fileNameOpened = false;
 
-downloadBtn.addEventListener('click', function download() {
+saveAsBtn.addEventListener('click', function() { download() });
+
+function download() {
     if (fileNameOpened == true) {
-        fileName = downloadTextInp.value;
+        saveAsBtn.innerHTML = 'Save As';
+        fileName = saveAsNameInp.value;
         let textValue = text.value;
         let downloadLink = document.createElement('a');
     
@@ -157,12 +142,54 @@ downloadBtn.addEventListener('click', function download() {
 
         downloadLink.click();
         document.body.removeChild(downloadLink);
-        downloadTextInp.style.display = 'none';
+        saveAsNameInp.style.display = 'none';
+        fileNameOpened = false;
+        fileName = '';
     } else {
-        downloadTextInp.style.display = 'inline';
+        saveAsBtn.innerHTML = 'Download';
+        saveAsNameInp.style.display = 'inline';
         fileNameOpened = true;
     }
-});
+};
+
+function saveAs() {
+    toolbar.style.display = 'block';
+    download();
+}
+
+saveAsNameInp.addEventListener('keypress', function(e) {
+    if (e.which == 13) { download() }
+    else { return }
+})
+
+// File Opener Function
+
+fileUploadInp.addEventListener('change', function() { readNewFile(this) })
+
+function readNewFile(userFile) {
+    let file = userFile.files[0];
+    let fileReader = new FileReader();
+    fileReader.readAsText(file);
+
+    const supportedTypes = ['text/plain', 'text/css', 'text/html', 'text/javascript', 'application/json']
+
+    fileReader.addEventListener('load', function showNewFile() {
+        if (supportedTypes.indexOf(file.type) > -1) { text.value += fileReader.result }
+        else {
+            errorElem.innerHTML = 'This file type is not supported.';
+            setTimeout(hideError, 3000);
+            fileUploadInp.value = '';
+        }
+    });
+
+    fileReader.addEventListener('error', function displayError() {
+        errorElem.innerHTML = 'Something Went Wrong. Please try again.';
+    });
+};
+
+// Printing
+
+printBtn.addEventListener('click', function print() { window.print() });
 
 // Word Count
 
@@ -173,8 +200,46 @@ function count() {
     if (chars == 0 && words == 1) {
         wordCount.innerHTML = '0 Words';
     } else if (words == 1) {
-        wordCount.innerHTML = words + ' Word';
+        wordCount.innerHTML = `${words} Word`;
     } else {
-        wordCount.innerHTML = words + ' Words';
+        wordCount.innerHTML = `${words} Words`;
+    }
+
+    if (words > 10000) {
+        wordCount.style.fontSize = '90%';
     }
 }
+
+// Keyboard Shortcuts
+
+const toolbar = document.getElementById('toolbar');
+
+document.addEventListener('keydown', function toggletoolbar(e) {
+    if (e.ctrlKey && e.which == 32) { // Toggles toolbar on Command/Ctrl + Space
+        if (toolbar.style.display != 'block') {
+            toolbar.style.display = 'block';
+            text.style.height = `${window.innerHeight * 0.94}px`;
+        } else if (toolbar.style.display = 'block') {
+            toolbar.style.display = 'none';
+            text.style.height = `${window.innerHeight * 0.97}px`;
+        }
+        settingsMenu.style.display = 'none';
+    } else if (e.ctrlKey && e.shiftKey && e.which == 83) { // Triggers saveAs function on Command/Ctrl + Shift + S
+        saveAs();
+    } else if (e.ctrlKey && e.which == 83) { // Triggers save function on Command/Ctrl + S
+        save();
+    } else if (e.ctrlKey && e.which == 79) { // Triggers file opening function on Command/Ctrl + O
+        fileUploadInp.click();
+    } else if (e.ctrlKey && e.which == 80) { // Triggers print function on Command/Ctrl + P
+        print();
+    } else { return }
+});
+
+// Error Handling
+
+window.addEventListener('error', function(err) {
+    errorElem.innerHTML = `Error: ${err.message}`
+    setTimeout(hideError, 5000);
+});
+
+function hideError() { errorElem.innerHTML = '' }
