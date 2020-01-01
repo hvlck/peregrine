@@ -88,6 +88,7 @@ p, li {
 }
 
 table {
+    width: 100%;
     font-family: "Consolas", monospace;
     text-align: left;
     padding: 10px;
@@ -96,11 +97,12 @@ table {
 
 th {
     font-size: 14pt;
+    padding: 0 0 0 5px;
     border-bottom: 2px solid var(--secondary);
 }
 
 td {
-    padding: 10px 10px 10px 0;
+    padding: 10px 10px 10px 5px;
     font-size: 12pt;
 }
 
