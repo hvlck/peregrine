@@ -7,92 +7,76 @@
     <meta name="keywords" content="ethan justice,peregrine,text editor,minimal,writing">
     <meta name="author" content="Ethan Justice">
     <title>Peregrine | Home</title>
-    <link id="theme" href="workspace/themes/light.css" rel="stylesheet" type="text/css" >
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <link id="theme" href="workspace/themes/light.css" rel="stylesheet" type="text/css" />
+    <link href="./style.css" rel="stylesheet" type="text/css" />
   </head>
-<body>
-    <div class="border"></div>
+    <body>
+        <div class="nav">
+            <nav>
+                <a href="/peregrine">Home</a>
+                <a href="workspace/">Workspace</a>
+                <a id="theme-btn">Light</a>
+                <a href="https://github.com/EthanJustice/peregrine">Source</a>
+            </nav>
+        </div>
+        
+        <h2>About</h2>
+        <p>Peregrine is a minimal, simple, and easy-to-use text editor.  Instead of having a complicated user interface with hundreds of buttons (of which many are never used), Peregrine provides a distraction-free environment in order to help you make the most out of your writing sessions.</p>
+        <h3><a href="workspace/">Start Working</a><h3>
 
-    <div class="nav">
-        <nav>
-            <a href="/peregrine">Home</a>
-            <a href="workspace/">Workspace</a>
-            <a id="theme-btn">Light</a>
-            <a href="https://github.com/EthanJustice/peregrine">Source</a>
-        </nav>
-    </div>
-    
-    <h2>About</h2>
-    <p>Peregrine is a minimal, simple, and easy-to-use text editor.  Instead of having a complicated user interface with hundreds of buttons (of which many are never used), Peregrine provides a distraction-free environment in order to help you make the most out of your writing sessions.</p>
-    <h3><a href="workspace/">Get Started</a><h3>
+        <h2>Usage</h2>
+        <h4>The Toolbar</h4>
+        <p>The toolbar is hidden by default.  To open it, hold Command or Control and press the spacebar.</p>
+        <h4>Settings</h4>
+        <p>The settings menu allows you to customize the font of the editor, the font size, and even reset both your settings and writing.  To access it, click the Settings button in the toolbar, and <i>voila!</i></p>
+        <h5>Themes</h5>
+        <p>Peregrine comes with three themes: light, dark, and solarized.  Themes can be changed by toggling through the Themes button in the settings menu.</p>
+        <h4>Saving</h4>
+        <p>Peregrine saves your writing to your browser's <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage">localStorage</a>, preventing you from losing your work in case of an accidental refresh.  For that added protection, Peregrine auto-saves your work every 20 seconds, and also has a manual saving button in case you just wrote down the end-all-be-all of thoughts.</p>
+        <h4>Downloading</h4>
+        <p>To download your document, click the "Save As," button in the toolbar.  Name the file and then press enter or click the "Save As," button again, and you're all set!  <b>Note: this feature does not work on iOS (Android untested).</b></p>
+        <h4>Uploading</h4>
+        <p>Uploading a document to Peregrine is simple.  Press the Upload button in the toolbar and choose your file.  <b>Note: this feature does not work in iOS (Android untested).</b></p>
 
-    <h2>Features</h2>
-    <ul style="margin: auto 0 auto -2%">
-        <li>Three Themes</li>
-        <li>Word Counting</li>
-        <li>File Uploading</li>
-        <li>File Downloading</li>
-        <li>Clean, sleek, and distraction-free interface</li>
-        <li>Auto-saving (every 20 seconds) and manual saving capabilities</li>
-        <li>Saves workspace in the browser</li>
-        <li>Over 20 Fonts and Sizes to Choose From</li>
-    </ul>
-
-    <h2>Usage</h2>
-    <h4>The Toolbar</h4>
-    <p>The toolbar is hidden by default.  To open it, hold Command or Control and press the spacebar.</p>
-    <h4>Settings</h4>
-    <p>The settings menu allows you to customize the font of the editor, the font size, and even reset both your settings and writing.  To access it, click the Settings button in the toolbar, and <i>voila!</i></p>
-    <h5>Themes</h5>
-    <p>Peregrine comes with three themes: light, dark, and solarized.  Themes can be changed by toggling through the Themes button in the settings menu.</p>
-    <h4>Saving</h4>
-    <p>Peregrine saves your writing to your browser's <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage">localStorage</a>, preventing you from losing your work in case of an accidental refresh.  For that added protection, Peregrine auto-saves your work every 20 seconds, and also has a manual saving button in case you just wrote down the end-all-be-all of thoughts.</p>
-    <h4>Downloading</h4>
-    <p>To download your document, click the "Save As," button in the toolbar.  Name the file and then press enter or click the "Save As," button again, and you're all set!  <b>Note: this feature does not work on iOS (Android untested).</b></p>
-    <h4>Uploading</h4>
-    <p>Uploading a document to Peregrine is simple.  Press the Upload button in the toolbar and choose your file.  <b>Note: this feature does not work in iOS (Android untested).</b></p>
-
-    <h3>Keyboard Shortcuts</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Shortcut</th>
-                <th>Function</th>        
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Cmd/Ctrl + Space</td>
-                <td>Toggles toolbar</td>
-            </tr>
-            <tr>
-                <td>Cmd/Ctrl + S</td>
-                <td>Saves text to localStorage</td>
-            </tr>
-            <tr>
-                <td>Cmd/Ctr + Shift + S</td>
-                <td>Opens the download file menu</td>
-            </tr>
-            <tr>
-                <td>Cmd/Ctr + O</td>
-                <td>Open a file</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <script>
-        const styleSheet = document.getElementById('theme');
-        document.getElementById('theme-btn').addEventListener('click', function changeTheme() {
-            let currentStyle = styleSheet.getAttribute('href');
-            if (currentStyle == 'workspace/themes/light.css') {
-                styleSheet.setAttribute('href', 'workspace/themes/dark.css');
-                document.getElementById('theme-btn').innerHTML = 'Dark';
-            } else {
-                styleSheet.setAttribute('href', 'workspace/themes/light.css');
-                document.getElementById('theme-btn').innerHTML = 'Light';
-            }
-        });
-    </script>
-
-</body>
+        <h3>Keyboard Shortcuts</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Shortcut</th>
+                    <th>Function</th>        
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Cmd/Ctrl + Space</td>
+                    <td>Toggles toolbar</td>
+                </tr>
+                <tr>
+                    <td>Cmd/Ctrl + S</td>
+                    <td>Saves text to localStorage</td>
+                </tr>
+                <tr>
+                    <td>Cmd/Ctr + Shift + S</td>
+                    <td>Opens the download file menu</td>
+                </tr>
+                <tr>
+                    <td>Cmd/Ctr + O</td>
+                    <td>Open a file</td>
+                </tr>
+            </tbody>
+        </table>
+        <script>
+            const styleSheet = document.getElementById('theme');
+            document.getElementById('theme-btn').addEventListener('click', () => {
+                let currentStyle = styleSheet.getAttribute('href');
+                if (currentStyle == 'workspace/themes/light.css') {
+                    styleSheet.setAttribute('href', 'workspace/themes/dark.css');
+                    document.getElementById('theme-btn').innerText = 'Dark';
+                } else {
+                    styleSheet.setAttribute('href', 'workspace/themes/light.css');
+                    document.getElementById('theme-btn').innerText = 'Light';
+                }
+            });
+        </script>
+    </body>
 </html>
